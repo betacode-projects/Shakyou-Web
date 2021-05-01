@@ -1,6 +1,7 @@
 let upload_flag = false;
 let download_link = '';
-let API_URL = 'http://localhost:45829';
+let API_URL = 'http://hirosuke-pi.tplinkdns.com:45829';
+//let API_URL = 'http://localhost:45829'
 
 function readURL(input) {
   if (input.files && input.files[0]) {
