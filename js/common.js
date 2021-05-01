@@ -58,7 +58,7 @@ function sendPdfFile() {
   if (fd === undefined || upload_flag){
       return false;
   }
-  console.log($('#file')[0]['files'][0]);
+  //console.log($('#file')[0]['files'][0]);
 
   upload_flag = true;
   $('#error').css('display', 'none');
@@ -71,6 +71,7 @@ function sendPdfFile() {
       processData: false,
       contentType: false,
       dataType: 'json',
+      timeout: 60000,
       xhr: function () {
           var xhr = new window.XMLHttpRequest();
           xhr.upload.addEventListener("progress", function (evt) {
