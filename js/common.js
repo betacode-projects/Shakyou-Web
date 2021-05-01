@@ -14,7 +14,8 @@ function readURL(input) {
       $('.file-upload-content').show();
 
       $('.image-title').html(input.files[0].name);
-
+      $('.image-upload-wrap').removeClass('image-dropping');
+      
       sendPdfFile();
     };
     $('.file-upload-btn').html('<i class="fas fa-trash-alt"></i> 削除');
@@ -26,6 +27,7 @@ function readURL(input) {
 }
 
 function removeUpload() {
+  $('.download-link').css('display', 'none');
   $('#error').css('display', 'none');
   $('#success').css('display', 'none');
   $('.file-upload-btn').html('PDFをアップロード');
@@ -34,6 +36,7 @@ function removeUpload() {
   $('.file-upload-content').hide();
   $('.image-upload-wrap').show();
   $('#file').val('');
+
 }
 
 $('.image-upload-wrap').bind('dragover', function () {
@@ -47,22 +50,38 @@ $('.image-upload-wrap').bind('dragover', function () {
 
 function sendPdfFile() {
   // 多重送信を防ぐため通信完了までボタンをdisableにする
-  $('.progress-bar').html('送信準備中...');
-  $('.progress-bar').removeClass("bg-danger");
-  $('.progress-bar').removeClass("bg-success");
-  $('.progress-bar').addClass("progress-bar-animated");
 
   let fd = new FormData($('#upload').get(0));
   $('#file').prop('disabled', true);
 
+  if ($('#file')[0]['files'][0].size >= 10485760){
+    $('#error').html('10MBを超えるファイルはアップロードできません');
+    $('#error').css('display', 'block');
+    $('#file').prop('disabled', false);
+    $('#file').val('');
+    return false;
+  }
+
+  if ($('#file')[0]['files'][0].type !== 'application/pdf'){
+    $('#error').html('PDFファイル以外はアップロードできません');
+    $('#error').css('display', 'block');
+    $('#file').prop('disabled', false);
+    $('#file').val('');
+    return false;
+  }
+
   if (fd === undefined || upload_flag){
       return false;
   }
-  //console.log($('#file')[0]['files'][0]);
+  //console.log($('#file')[0]['files'][0].type);
 
   upload_flag = true;
   $('#error').css('display', 'none');
   $('#success').css('display', 'none');
+  $('.progress-bar').html('送信準備中...');
+  $('.progress-bar').removeClass("bg-danger");
+  $('.progress-bar').removeClass("bg-success");
+  $('.progress-bar').addClass("progress-bar-animated");
 
   $.ajax({
       url:  API_URL +'/convert-pdf',
