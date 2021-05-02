@@ -117,7 +117,9 @@ function sendPdfFile() {
       console.log(data);
       
       if (data['status'] === 'success'){
-          $('.download-link').attr('href', API_URL +'/download?id='+ data['zip-id']+'&name='+ data['filename']);
+          let link = API_URL +'/download?id='+ data['zip-id']+'&name='+ data['filename'];
+          $('.download-link').css('display', 'block');
+          $('.download-link').attr('href', link);
           $('.download-link').html('<i class="fas fa-download"></i> ' +data['filename']+'.zip');
 
           $('.download-bt').css('display', 'block');
@@ -125,6 +127,8 @@ function sendPdfFile() {
           $('#success').html(data['msg-jp']);
           $('.progress-bar').html('変換完了');
           $('.progress-bar').addClass("bg-success");
+
+          window.location.href = link;
       }
       else{
           $('#error').html(data['msg-jp']);
