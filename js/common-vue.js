@@ -32,7 +32,7 @@ let app = new Vue({
         },
 
         asyncReadPdf: function(input){
-            self.progress_status = '送信の準備中...';
+            self.progress_status = 'ファイル解析中...';
 
             // ファイルチェック
             if (!(input.target.files && input.target.files[0])) return this.removePdfFile();
@@ -44,6 +44,7 @@ let app = new Vue({
             this.success_text = '';
 
             // PDFファイル送信
+            self.progress_status = '送信準備中...';
             this.selectedPdfFile();
             this.asyncSendPdf(new FormData(this.$refs.upload));
 
