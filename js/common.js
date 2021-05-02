@@ -27,6 +27,8 @@ function readURL(input) {
 }
 
 function removeUpload() {
+  if (upload_flag) return;
+  
   $('.download-link').css('display', 'none');
   $('#error').css('display', 'none');
   $('#success').css('display', 'none');
@@ -36,7 +38,6 @@ function removeUpload() {
   $('.file-upload-content').hide();
   $('.image-upload-wrap').show();
   $('#file').val('');
-
 }
 
 $('.image-upload-wrap').bind('dragover', function () {
