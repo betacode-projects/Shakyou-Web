@@ -39,7 +39,6 @@ body {
 }
 
 .file-upload-content {
-  display: none;
   text-align: center;
 }
 
@@ -116,4 +115,8 @@ body {
 .remove-image:active {
   border: 0;
   transition: all .2s ease;
+}
+
+[v-cloak] {
+  display: none;
 }
