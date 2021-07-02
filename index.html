@@ -32,7 +32,7 @@
                        :aria-valuenow="progress_value" aria-valuemin="0" aria-valuemax="100">{{progress_status}}
                   </div>
                 </div>
-                <div v-show="download_link !== ''" class="download-bt col-md-5 mx-auto mt-4">
+                <div v-show="download_link !== ''" class="download-bt mx-auto mt-4">
                   <a :href="download_link" class="btn btn-primary download-link" download><i class="fas fa-download"></i> {{download_name}}</a>
                 </div>
               </div>
@@ -49,8 +49,9 @@
       <div v-show="error_text !== ''" id="error" class="col-md-7 mx-auto alert alert-danger text-center">{{error_text}}</div>
       <div v-show="success_text !== ''" id="success" class="col-md-7 mx-auto alert alert-success text-center">{{success_text}}</div>
       <footer class="pt-2 pb-1 bg-light col-md-7 mx-auto text-center">
-        <p class="mx-auto">⚠ 動作保証はありません！ ⚠</p>
-        <p class="mx-auto">2021/05/08 v3.20 | Vue.js + Flask</p>
+        <p class="mx-auto"><h3>⚠ 動作保証はありません！ ⚠</h3></p>
+        <p class="mx-auto">本当に正しく動作するか自信がないので、一度コードを全部見ることを強くお勧めします！</p>
+        <p class="mx-auto">2021/07/02 v3.21 | Vue.js + Flask</p>
       </footer>
     </div>
     <script defer src="./js/all.min.js"></script>
